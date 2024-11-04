@@ -5,7 +5,7 @@ orms: usar un orm (como django orm o sequelize en node.js) puede mitigar sql inj
 ejemplo en django:
 
 python
-Copiar código
+#
 from django.db import connection
 
 # no seguro
@@ -23,19 +23,19 @@ uso de plantillas seguras: utiliza motores de plantillas seguros que escapen aut
 ejemplo en django:
 
 html
-Copiar código
+#
 <!-- las plantillas de django escapan automaticamente las variables -->
 <p>{{ usuario.comentario }}</p>
 ejemplo en express:
 
 javascript
-Copiar código
+
 app.get('/comentarios', (req, res) => {
     res.render('comentarios', { comentario: req.body.comentario });
 });
 librerias de sanitizacion: en express, usa librerias como sanitize-html para limpiar el contenido de entrada.
 javascript
-Copiar código
+#
 const sanitizeHtml = require('sanitize-html');
 const comentarioSeguro = sanitizeHtml(req.body.comentario);
 3. cross-site request forgery (csrf)
@@ -44,7 +44,7 @@ proteccion contra csrf en formularios: los ataques csrf funcionan enganando a lo
 django: django tiene csrf habilitado por defecto y utiliza tokens para protegerse de estos ataques. asegúrate de incluir {% csrf_token %} en todos los formularios html y verifica que los tokens se incluyan en los encabezados de las solicitudes ajax.
 
 html
-Copiar código
+#
 <!-- en django -->
 <form method="post" action="/example/">
     {% csrf_token %}
@@ -52,7 +52,7 @@ Copiar código
 </form>
 express: en express, puedes usar el middleware csurf para agregar proteccion csrf.
 javascript
-Copiar código
+#
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
